@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+    <title>Moments</title>
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   
+   
+</head>
+<body>
+
+         <nav>
+            <div class="nav-wrapper #607d8b blue-grey">
+              <a href="/moments" class="brand-logo">Logo</a>
+              <ul class="right hide-on-med-and-down">
+                <li><a class="waves-effect waves-light btn" href="/newMoment"> + Moment </a></li>
+                <li><a class="waves-effect waves-light btn" href="/moments">Moments</a></li>
+                <li><a class="waves-effect waves-light btn" href="/logout">Log Out</a></li>
+               
+              </ul>
+            </div>
+          </nav>
+
+
+        <ul class="collapsible" data-collapsible="expandable"><% for(var i = 0; i < moments.length; i++){ %>
+            <li>
+              <div class="collapsible-header"><i class="material-icons"></i>Moment:</div>
+              <div class="collapsible-body">
+                <span><%=moments[i].moment %></span>
+                <a class="waves-effect waves-light btn delete" data-moment-id=<%=moments[i]._id %> >delete</a>
+                <a class="waves-effect waves-light btn edit" data-moment-id=<%=moments[i]._id %> >edit</a>
+              </div>
+            </li>
+        <% } %>
+        </ul>
+                
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+<script type="text/javascript" src="index.js"></script>
+</body>
+</html>
