@@ -40,21 +40,17 @@ module.exports = ((app, passport) => {
 	}))
 
 	//update new moment
-	app.put('/moment/:id', (req,res)=>{
-		//check to see if id matches id in database
-		if(!(req.params.id === req.body.id)){
-			res.status(400).json({
-				error: "Request path id and request body id values must match"
-			})
-		}
+	app.put('/moments/:id', (req,res)=>{
 
-		
 
-		Moment.updateOne({_id: req.params.id}, {$set: {moment : req.body}}, function(err, updatedMoment){
-			
-			res.send('success!')
 
-		}).catch(err => res.status(500).json({message: 'Something went wrong'}))
+	Moment.findByIdAndUpdate(req.params.id, {moment: req.body.moment}, function(err, updatedMoment){
+
+			console.log(updatedMoment)
+			if(!err)
+				res.send('success!')
+
+		})
 	})
 
 	//delete moment from database

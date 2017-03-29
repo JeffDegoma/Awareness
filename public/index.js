@@ -50,7 +50,7 @@ $( document ).ready(function(){
             type: 'DELETE',
             url: '/moments/' + id,
             success: function(data){
-                console.log(data)
+                // console.log(data)
                 repaintTheDOM()
             },
 
