@@ -1,3 +1,4 @@
-//write out all the steps for a put request
+i want to be able to edit or delete based on the user's id
 
-//
+//isolate user id
+	//

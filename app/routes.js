@@ -10,11 +10,15 @@ module.exports = ((app, passport) => {
 
 	
 
-
 	//moments page
 	app.get('/moments', ((req, res)=>{
+
+		// look at req.user
+		// console.log("USER", req.user)
+		// console.log("BODY", req.body.item)
+
 		Moment.find({}, ((err, moments)=>{
-			// console.log("MOMENTS", moments)
+			console.log("MOMENTS", moments)
 			res.render('moments.ejs', {moments: moments})
 		}))
 		
@@ -24,9 +28,10 @@ module.exports = ((app, passport) => {
 	//post new moment
 	app.post('/newMoments',  ((req, res)=>{
 		let newMoment = new Moment()
+		//assign moment from Database to body
 		newMoment.moment = req.body.item
 
-		
+		console.log(newMoment.moment)
 		newMoment.save(function(err, savedMoment){
 			if(!err) {
 				res.send('it worked!')
@@ -42,9 +47,9 @@ module.exports = ((app, passport) => {
 	//update new moment
 	app.put('/moments/:id', (req,res)=>{
 
+		console.log("REQ BODY", req.body)
 
-
-	Moment.findByIdAndUpdate(req.params.id, {moment: req.body.moment}, function(err, updatedMoment){
+		Moment.findByIdAndUpdate(req.params.id, {moment: req.body.moment}, function(err, updatedMoment){
 
 			console.log(updatedMoment)
 			if(!err)
@@ -123,6 +128,7 @@ module.exports = ((app, passport) => {
 	})
 
 
+
 	
 	//paint the dom
 	app.get('/moments/all', (req,res)=>{
@@ -132,5 +138,18 @@ module.exports = ((app, passport) => {
 			res.json(moments)
 		})
 	})
+
+
+
+	function isLoggedIn(req,res,next){
+		if(req.isAuthenticated())
+			return next()
+
+		//if they aren't redirect to the home page.
+		res.redirect('/')
+	}
+
+
+
 
 })
