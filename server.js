@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express');
 const app = express()
 const PORT = process.env.PORT || 3000
@@ -6,6 +7,7 @@ const passport = require('passport')
 const session = require('express-session')
 const morgan = require('morgan')
 const flash  = require('connect-flash');
+
 
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
