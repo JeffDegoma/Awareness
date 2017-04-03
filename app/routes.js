@@ -2,36 +2,46 @@ const Moment = require('./models/moment')
 
 module.exports = ((app, passport) => {
 
+	
+
+	app.post('/login', passport.authenticate('local-login', {
+        successRedirect : '/newMoment', // redirect to the secure profile section
+        failureRedirect : '/', // redirect back to the signup page if there is an error
+        failureFlash : true // allow flash messages
+    }));
+
+
 
 	//newMoments page
-	app.get('/newMoment',(req,res)=>{
+	app.get('/newMoment', isLoggedIn, (req,res)=>{
 		res.render('newMoment.ejs')
 	})
 
 	
 
 	//moments page
-	app.get('/moments', ((req, res)=>{
+	app.get('/moments', isLoggedIn, ((req, res)=>{
 
 		// look at req.user
 		// console.log("USER", req.user)
 		// console.log("BODY", req.body.item)
 
-		Moment.find({}, ((err, moments)=>{
-			console.log("MOMENTS", moments)
+
+		Moment.find({user: req.user._id}, ((err, moments)=>{
 			res.render('moments.ejs', {moments: moments})
 		}))
 		
 	}))
 
 
-	//post new moment
+	//Post new moment
 	app.post('/newMoments',  ((req, res)=>{
 		let newMoment = new Moment()
 		//assign moment from Database to body
 		newMoment.moment = req.body.item
 
-		console.log(newMoment.moment)
+		newMoment.user = req.user._id
+		
 		newMoment.save(function(err, savedMoment){
 			if(!err) {
 				res.send('it worked!')
@@ -44,7 +54,7 @@ module.exports = ((app, passport) => {
 		
 	}))
 
-	//update new moment
+	//Update new moment
 	app.put('/moments/:id', (req,res)=>{
 
 		console.log("REQ BODY", req.body)
@@ -58,7 +68,7 @@ module.exports = ((app, passport) => {
 		})
 	})
 
-	//delete moment from database
+	//Delete moment from database
 	app.delete('/moments/:id', (req, res)=>{
 		Moment.findByIdAndRemove(req.params.id, err => {
 			if(err)
@@ -101,8 +111,8 @@ module.exports = ((app, passport) => {
 
 
 	// Google routes =========================
-	// authenticate and login
-	app.get('/auth/google', passport.authenticate('google',{
+	// Authenticate and login
+	app.get('/auth/google',  passport.authenticate('google',{
 		scope: ['profile', 'email']
 	}))
 
@@ -130,9 +140,9 @@ module.exports = ((app, passport) => {
 
 
 	
-	//paint the dom
+	//Paint the dom
 	app.get('/moments/all', (req,res)=>{
-		Moment.find({}, function(err, moments){
+		Moment.find({user: req.user._id}, function(err, moments){
 			if(err)
 				throw err
 			res.json(moments)
@@ -145,7 +155,7 @@ module.exports = ((app, passport) => {
 		if(req.isAuthenticated())
 			return next()
 
-		//if they aren't redirect to the home page.
+		//If they aren't redirect to the home page.
 		res.redirect('/')
 	}
 

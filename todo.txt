@@ -1,4 +1,9 @@
-i want to be able to edit or delete based on the user's id
+have quotes inside the example moments accordian hardcoded with thoughtful quotes
 
-//isolate user id
-	//
+
+// repaintTheDOM
+        // hits a route that gets all the data
+        // targets the content inside of the accordian
+        // wipes out everything that is there
+        // loops over data and paints the DOM
+        // find classes and update 

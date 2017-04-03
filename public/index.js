@@ -10,17 +10,37 @@ $( document ).ready(function(){
     $('.collapsible').collapsible();
 
 
-   
-    
+    //mobile-modal
+    $("#mobile-demo").click(function(){
+        $("#myModal").modal();
+    });
 
 
-    //new momemnts page
-    $('form').on('submit', (e)=>{
+    //modal
+    $("#myBtn").click(function(){
+        $("#myModal").modal();
+    });
+
+    // Smooth Scroll to Signup
+    $("a").on('click', function(event) {
+        if (this.hash !== "") {
+            event.preventDefault();
+            const hash = this.hash;
+        $('html, body').animate({
+            scrollTop: $(hash).offset().top-55
+                }, 800, 'swing', function(){
+            window.location.hash = hash;
+            });
+        }
+    });
+
+
+
+    //Add a new moment ==================
+    $('#new-moment').on('submit', (e)=>{
         e.preventDefault(e)
         let item = $('form .materialize-textarea').val()
-        // let text = {item: item.val()}.val()
-        // let text = item.val()
-
+   
 
         $.ajax({
             type: 'POST',
@@ -31,15 +51,14 @@ $( document ).ready(function(){
             },
 
             fail: ((err)=>{
-                throw err;
+                console.error(err);
             })
         })
         
-    })    
+    }) 
 
 
-
-    //attach delete button to post
+    //Delete moment======================================
     $('.collapsible').on('click','.delete', function(e) {
         e.preventDefault(e)
 
@@ -61,10 +80,12 @@ $( document ).ready(function(){
 
     })
 
-     $('.collapsible').on('click','.edit', function(e) {
+
+    //Edit moment=====================================
+    $('.collapsible').on('click','.edit', function(e) {
         e.preventDefault(e)
 
-        const id = $(this).data('moment-id')        //create a const called moment
+        const id = $(this).data('moment-id')       
         const moment = $(this).siblings('input').val()
         
         console.log("ID", id)
@@ -76,7 +97,7 @@ $( document ).ready(function(){
             data: {moment},
             success: function(data){
 
-                // console.log(data)
+                console.log(data)
                 repaintTheDOM()
             },
 
@@ -88,7 +109,7 @@ $( document ).ready(function(){
     })
 
 
-
+    //Delete moment======================================
     const activeArray = []
     
     $('.collapsible').on('click', 'li', function(e){
@@ -107,13 +128,8 @@ $( document ).ready(function(){
         }
     })
 
-    // repaintTheDOM
-        // hits a route that gets all the data
-        // targets the content inside of the accordian
-        // wipes out everything that is there
-        // loops over data and paints the DOM
-        // find classes and update 
-
+    
+    //Repaint the DOM======================================
     const templateStr = 
             `<li>
               <div class="collapsible-header"><i class="material-icons"></i>Moment:</div>

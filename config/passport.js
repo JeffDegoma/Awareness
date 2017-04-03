@@ -1,5 +1,5 @@
 //strategies
-
+const LocalStrategy = require('passport-local').Strategy
 const FacebookStrategy = require('passport-facebook').Strategy
 const TwitterStrategy = require('passport-twitter').Strategy
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
@@ -32,79 +32,83 @@ module.exports = function(passport){
 		})
 	})
 
-	//local sign-up==================
+	// local sign-up==================
 
 	
-    // passport.use('local-signup', new LocalStrategy({
-    //     // by default, local strategy uses username and password, we will override with email
-    //     usernameField : 'email',
-    //     passwordField : 'password',
-    //     passReqToCallback : true // allows us to pass back the entire request to the callback
-    // },
+    passport.use('local-signup', new LocalStrategy({
+        // by default, local strategy uses username and password, we will override with email
+        usernameField : 'email',
+        passwordField : 'password',
+        passReqToCallback : true // allows us to pass back the entire request to the callback
+    },
 
-    // //
-    // function(req, email, password, done) {
-    // 	//asychronous
-    // 	//User.findOne won't fire unless data is sent back
-    // 	process.nextTick(function(){
-    // 		//find a user whose email is the same as the forms email
-    // 		//we are checking to see if the user trying to login already exists
-    // 		User.findOne({'local.email': email},function(err,user){
-    // 			if(err)
-    // 				return done(err)
+    //
+    function(req, email, password, done) {
+    	//asychronous
+    	//User.findOne won't fire unless data is sent back
+    	process.nextTick(function(){
+    		//find a user whose email is the same as the forms email
+    		//we are checking to see if the user trying to login already exists
+    		User.findOne({'local.email': email},function(err,user) {
+                console.log("USER SIGNUP", user)
 
-    // 			if(user){
-    // 				return done(null,false,req.flash('signupMessage', 'That email is already taken.'))
-    // 			}else{
-    // 				const newUser = new User()
-    // 				newUser.local.email = email
-    // 				console.log(newUser)
-    // 				newUser.local.password = newUser.generateHash(password)
+    			if(err)
+    				return done(err)
 
-    // 				newUser.save(function(err){
-    // 					if(err)
-    // 						throw err
+    			if(user){
+    				return done(null,false,req.flash('signupMessage', 'That email is already taken.'))
+    			}else{
+    				const newUser = new User()
+    				newUser.local.email = email
+    				console.log(newUser)
+    				newUser.local.password = newUser.generateHash(password)
 
-    // 					return done(null, newUser)
-    // 				})
-    // 			}
+    				newUser.save(function(err){
+    					if(err)
+    						throw err
 
-    // 		})
-    // 	})
+    					return done(null, newUser)
+    				})
+    			}
 
-    // }))
+    		})
+    	})
 
-    // //local-login
-    // passport.use('local-login', new LocalStrategy({
+    }))
 
-    // 	usernameField: 'email',
+    // local-login
+    passport.use('local-login', new LocalStrategy({
 
-    // 	passwordField: 'password',
+    	usernameField: 'email',
 
-    // 	passReqToCallback: true
+    	passwordField: 'password',
 
-    //     },
+    	passReqToCallback: true
 
-    //     function(req, email, password, done){
+        },
 
-    //     	//find a user in the database whose email is the same in the form email
-    //     	User.findOne({'local.email': email}, function(err,user){
-    //     		if(err)
-    //     			return done(err)
+        function(req, email, password, done){
 
-    //     	//if user doesn't exist return flash message
-    //     		if(!user)
-    //     			return done(null, false, req.flash('loginMessge', 'No user found'))
+        	//find a user in the database whose email is the same in the form email
+        	User.findOne({'local.email': email}, function(err,user){
+                
+                console.log("USER LOGIN", user)
+        		if(err)
+        			return done(err)
+
+        	//if user doesn't exist return flash message
+        		if(!user)
+        			return done(null, false, req.flash('loginMessge', 'No user found'))
         	
-    //     	//check to see if user is found but the password is wrong
-    //     		if(!user.validPassword(password))
-    //     			return done(null,false, req.flash('loginMessage', 'Oops! Wrong password.'))
+        	//check to see if user is found but the password is wrong
+        		if(!user.validPassword(password))
+        			return done(null,false, req.flash('loginMessage', 'Oops! Wrong password.'))
         
-    //     		return done(null, user)
+        		return done(null, user)
 
-    //     	})
+        	})
 
-    //   	}))
+      	}))
 
     //Facebook=========================
 

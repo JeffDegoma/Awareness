@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 const passport = require('passport')
 const session = require('express-session')
 const morgan = require('morgan')
+const flash  = require('connect-flash');
 
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
@@ -27,6 +28,9 @@ app.use(morgan('common'))
 app.use(session({secret: 'ilovescotchscotchyschotch', resave: true, saveUninitialized: true}))
 app.use(passport.initialize())
 app.use(passport.session())
+
+app.use(flash()); // use connect-flash for flash messages stored in session
+
 
 app.set('view engine', 'ejs')
 

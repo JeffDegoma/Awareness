@@ -1,7 +1,8 @@
 const mongoose = require('mongoose')
 
 const momentSchema = new mongoose.Schema({
-	moment: String
+	moment: String,
+	user: String
 })
 
 const Moment = mongoose.model('Moment', momentSchema);
