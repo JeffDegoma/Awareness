@@ -38,8 +38,8 @@ $( document ).ready(function(){
 
     //Add a new moment ==================
     $('#new-moment').on('submit', (e)=>{
-        e.preventDefault(e)
-        let item = $('form .materialize-textarea').val()
+        e.preventDefault(e);
+        let item = $('form .materialize-textarea').val();
    
 
         $.ajax({
@@ -47,49 +47,48 @@ $( document ).ready(function(){
             url: '/newMoments',
             data: {item: item},
             success: function(data){
-                window.location.replace('/moments')
+                window.location.replace('/moments');
             },
 
             fail: ((err)=>{
                 console.error(err);
             })
-        })
+        });
         
-    }) 
+    });
 
 
     //Delete moment======================================
     $('.collapsible').on('click','.delete', function(e) {
-        e.preventDefault(e)
+        e.preventDefault(e);
 
-        let id = $(this).data('moment-id')
+        let id = $(this).data('moment-id');
 
 
         $.ajax({
             type: 'DELETE',
             url: '/moments/' + id,
             success: function(data){
-                // console.log(data)
-                repaintTheDOM()
+                repaintTheDOM();
             },
 
             fail: ((err)=>{
                 throw err;
             })
-        })
+        });
 
-    })
+    });
 
 
     //Edit moment=====================================
     $('.collapsible').on('click','.edit', function(e) {
-        e.preventDefault(e)
+        e.preventDefault(e);
 
-        const id = $(this).data('moment-id')       
-        const moment = $(this).siblings('input').val()
+        const id = $(this).data('moment-id');     
+        const moment = $(this).siblings('input').val();
         
-        console.log("ID", id)
-        console.log("MOMENT", moment)
+        console.log("ID", id);
+        console.log("MOMENT", moment);
 
         $.ajax({
             type: 'PUT',
@@ -97,36 +96,36 @@ $( document ).ready(function(){
             data: {moment},
             success: function(data){
 
-                console.log(data)
-                repaintTheDOM()
+                console.log(data);
+                repaintTheDOM();
             },
 
             fail: ((err)=>{
                 throw err;
             })
-        })
+        });
 
-    })
+    });
 
 
     //Delete moment======================================
-    const activeArray = []
+    const activeArray = [];
     
     $('.collapsible').on('click', 'li', function(e){
-        e.preventDefault(e)
+        e.preventDefault(e);
         
-        const id = $(this).find('.edit').data('moment-id') 
-        const active = $(this).hasClass('active')
+        const id = $(this).find('.edit').data('moment-id') ;
+        const active = $(this).hasClass('active');
 
         if(active && !activeArray.includes(id)){
-            activeArray.push(id)
+            activeArray.push(id);
         }
 
         else if (!active) {
-            const index = activeArray.indexOf(id)
-            activeArray.splice(index, 1)
+            const index = activeArray.indexOf(id);
+            activeArray.splice(index, 1);
         }
-    })
+    });
 
     
     //Repaint the DOM======================================
@@ -138,41 +137,40 @@ $( document ).ready(function(){
                 <a class="waves-effect waves-light btn delete" data-moment-id="" >delete</a>
                 <a class="waves-effect waves-light btn edit" data-moment-id="">edit</a>
               </div>
-            </li>`
+            </li>`;
 
     function repaintTheDOM() {
         $.ajax({
             type: 'GET',
-            //doesn't need to run
             url: '/moments/all',
             success: function(data){
-                console.log(data)
+                console.log(data);
             
-                $('.collapsible').html('')
+                $('.collapsible').html('');
 
                 const appendTo = data.map(function(moment){
                     const str = $(templateStr);
-                    str.find('.momentText').val(moment.moment)
-                    str.find('.delete').data('moment-id', moment._id)
-                    str.find('.edit').data('moment-id', moment._id)
+                    str.find('.momentText').val(moment.moment);
+                    str.find('.delete').data('moment-id', moment._id);
+                    str.find('.edit').data('moment-id', moment._id);
                     // if in active array
                     if(activeArray.includes(moment._id)){
-                        str.addClass('active')
-                        str.find('.collapsible-header').addClass('active')
-                        str.find('.collapsible-body').show()
+                        str.addClass('active');
+                        str.find('.collapsible-header').addClass('active');
+                        str.find('.collapsible-body').show();
                     }
 
-                    return str
-                }) 
+                    return str;
+                });
 
-                $('.collapsible').html(appendTo)
+                $('.collapsible').html(appendTo);
     
             }
-        })
+        });
 
     }
 
   
 
-})
+});
 

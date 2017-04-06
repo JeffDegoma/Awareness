@@ -1,4 +1,3 @@
-have quotes inside the example moments accordian hardcoded with thoughtful quotes
 
 
 // repaintTheDOM
@@ -7,3 +6,13 @@ have quotes inside the example moments accordian hardcoded with thoughtful quote
         // wipes out everything that is there
         // loops over data and paints the DOM
         // find classes and update 
+
+
+
+
+        ///save into environment variables
+
+
+
+        'clientID': process.env.CLIENT_ID,
+		'clientSecret': process.env.CLIENT_SECRET,

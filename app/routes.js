@@ -57,11 +57,9 @@ module.exports = ((app, passport) => {
 	//Update new moment
 	app.put('/moments/:id', (req,res)=>{
 
-		console.log("REQ BODY", req.body)
 
 		Moment.findByIdAndUpdate(req.params.id, {moment: req.body.moment}, function(err, updatedMoment){
 
-			console.log(updatedMoment)
 			if(!err)
 				res.send('success!')
 
