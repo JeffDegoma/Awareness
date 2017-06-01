@@ -1,9 +1,10 @@
-
 body{
-
-	background-color: #F2F2F2;
+    background: url(img/mindful.jpg) no-repeat center center;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
-
 
 .demo, .signup{
   font-size: 13px;
@@ -13,43 +14,39 @@ body{
   padding-left: 10px
 }
 
-
 .parallax-container{
-      height: 740px;
+      height: 760px;
  }
 
 
  *{
-
   font-family: 'Roboto Slab', serif;
-
  }
 
 
-  .modal-header, h4, .close {
+
+.modal{
+   max-height: 60%;
+   border-radius: 10px;
+}
+
+
+/*  .modal-header, h4, .close {
       background-color: #5cb85c;
       color:white !important;
       text-align: center;
       font-size: 20px;
   }
-
-
-
-
+*/
 
 .text{
-	font-weight: 300;
-	background: rgba(96,125,139, .2);
-	border-radius: 10px;
-	padding: 40px;
+  font-weight: 300;
+  background: rgba(255,255,255, 0);
+  border-radius: 10px;
+  padding: 40px;
 }
 
-
-
-
 @import url('http://fonts.googleapis.com/css?family=Open+Sans|Montserrat|Source Sans Pro:300');
-
-
 
 #user-signup {
   position: absolute;
@@ -57,7 +54,7 @@ body{
   width: 100%;
   max-width: 100%;
   height: 80%;
-  max-height: 400px;
+  max-height: 350px;
   border-radius: 5px;
   overflow: hidden;
 }
@@ -69,11 +66,9 @@ body{
   margin: 0 auto;
 }
 
-
-
-
 .content {
-  padding: 25px 0;
+  max-width: 350px;
+  max-height: 100%;
 }
 
 .top {
@@ -98,6 +93,7 @@ body{
   font-family: 'Source Sans Pro';
   font-size: 35px;
   padding: 5px 0;
+  margin: 0 auto;
 }
 
 p {
@@ -181,13 +177,6 @@ p {
    vertical-align: top;
 }
 
-body{  
-    background: url(img/mindful.jpg) no-repeat center center;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
 
 /*second parallax*/
 .row-container{

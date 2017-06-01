@@ -32,7 +32,7 @@
 
         <ul class="collapsible" data-collapsible="expandable"><% for(var i = 0; i < moments.length; i++){ %>
             <li>
-              <div class="collapsible-header"><i class="material-icons"></i>Moment:</div>
+              <div class="collapsible-header"><i class="material-icons"></i>Moment: <%=moments[i].title %></div>
               <div class="collapsible-body">
                 <input value= '<%=moments[i].moment %>'>
                 <a class="waves-effect waves-light btn delete" data-moment-id=<%=moments[i]._id %> >delete</a>

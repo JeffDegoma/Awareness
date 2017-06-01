@@ -4,30 +4,20 @@ module.exports = ((app, passport) => {
 
 	
 
-	app.post('/login', passport.authenticate('local-login', {
-        successRedirect : '/newMoment', // redirect to the secure profile section
-        failureRedirect : '/', // redirect back to the signup page if there is an error
-        failureFlash : true // allow flash messages
-    }));
-
-
-
 	//newMoments page
-	app.get('/newMoment', isLoggedIn, (req,res)=>{
+	app.get('/newMoment', isLoggedIn, (req, res) => {
 		res.render('newMoment.ejs')
 	})
 
 	
-
 	//moments page
-	app.get('/moments', isLoggedIn, ((req, res)=>{
+	app.get('/moments', isLoggedIn, ((req, res) => {
 
-		// look at req.user
-		// console.log("USER", req.user)
+		console.log("USER", req.user)
 		// console.log("BODY", req.body.item)
 
 
-		Moment.find({user: req.user._id}, ((err, moments)=>{
+		Moment.find({user: req.user._id}, ((err, moments) => {
 			res.render('moments.ejs', {moments: moments})
 		}))
 		
@@ -35,14 +25,15 @@ module.exports = ((app, passport) => {
 
 
 	//Post new moment
-	app.post('/newMoments',  ((req, res)=>{
+	app.post('/newMoments',  ((req, res) => {
 		let newMoment = new Moment()
-		//assign moment from Database to body
+		//assign moment from Database to request body
 		newMoment.moment = req.body.item
+		newMoment.title = req.body.title
 
 		newMoment.user = req.user._id
 		
-		newMoment.save(function(err, savedMoment){
+		newMoment.save((err, savedMoment) => {
 			if(!err) {
 				res.send('it worked!')
 			}
@@ -61,19 +52,32 @@ module.exports = ((app, passport) => {
 		Moment.findByIdAndUpdate(req.params.id, {moment: req.body.moment}, function(err, updatedMoment){
 
 			if(!err)
-				res.send('success!')
+				res.send('EDIT success')
 
 		})
 	})
 
 	//Delete moment from database
 	app.delete('/moments/:id', (req, res)=>{
+		console.log(req.body)
 		Moment.findByIdAndRemove(req.params.id, err => {
 			if(err)
 				throw err;
-			res.send("success")
+			res.send("DELETE success")
 		})
 	})
+
+
+
+
+
+	//Local Route======================
+	app.post('/login', passport.authenticate('local-login', {
+        successRedirect : '/newMoment', // redirect to the secure profile section
+        failureRedirect : '/', // redirect back to the signup page if there is an error
+        failureFlash : true // allow flash messages
+    }));
+
 
 
 	//Facebook Routes==================
@@ -121,12 +125,8 @@ module.exports = ((app, passport) => {
 			successRedirect: '/newMoment',
 
 			failureRedirect: '/'
-		}))
+	}))
 	
-
-
-
-
 
 
 	//Logout
@@ -139,7 +139,7 @@ module.exports = ((app, passport) => {
 
 	
 	//Paint the dom
-	app.get('/moments/all', (req,res)=>{
+	app.get('/moments/all', (req, res) => {
 		Moment.find({user: req.user._id}, function(err, moments){
 			if(err)
 				throw err
@@ -156,8 +156,6 @@ module.exports = ((app, passport) => {
 		//If they aren't redirect to the home page.
 		res.redirect('/')
 	}
-
-
 
 
 })

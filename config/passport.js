@@ -14,7 +14,7 @@ const User = require('../app/models/user');
 //load auth module
 const configAuth = require('./auth');
 
-module.exports = function(passport){
+module.exports = (passport) => {
 
 	//passport session
 	//required for persistent login sessions
@@ -44,13 +44,14 @@ module.exports = function(passport){
 
     //
     function(req, email, password, done) {
+        console.log("REQUEST BODY FROM SIGNUP", req.body)
     	//asychronous
     	//User.findOne won't fire unless data is sent back
     	process.nextTick(function(){
     		//find a user whose email is the same as the forms email
     		//we are checking to see if the user trying to login already exists
     		User.findOne({'local.email': email},function(err,user) {
-                console.log("USER SIGNUP", user);
+                // console.log("USER SIGNUP", user);
 
     			if(err)
     				return done(err);
@@ -61,7 +62,7 @@ module.exports = function(passport){
     				const newUser = new User();
     				newUser.local.email = email;
     				console.log(newUser);
-   				newUser.local.password = newUser.generateHash(password);
+                    newUser.local.password = newUser.generateHash(password);
 
     				newUser.save(function(err){
     					if(err)

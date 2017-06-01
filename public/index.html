@@ -3,139 +3,135 @@
 <head>
 
 
-  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="/assets/styles.css">
+<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/assets/styles.css">
 
-
-	<title>Awareness</title>
+<title>Awareness</title>
 
 </head>
 <body>
-
   <!-- Navigation -->
-  <div>
-    <nav class="N/A transparent" >
-      <div class="nav-extended">
-      <div class="nav-wrapper">
-        <a href="#" class="brand-logo"><span class="logo">Logo</span></a>
-        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-        <ul class="right hide-on-med-and-down">
-          <li id="myBtn"><a href="#" class="demo">Demo/Login</a></li>
-          <li><a href="#user-signup" class="signup">Sign-Up</a></li>
-        </ul>
-      </div>
-      </div>
-    </nav>
-  </div>
+    <div class="Navigation">
+        <nav class="N/A transparent" >
+          <div class="nav-extended">
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo"><span class="logo">Logo</span></a>
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                  <li id="myBtn"><a class="demo">Demo/Login</a></li>
+                  <li><a href="#user-signup" class="signup">Sign-Up</a></li>
+                </ul>
+            </div>
+          </div>
+        </nav>
+    </div>
+          
 
-
-
-
-
-  <div class="container">
-
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-      <div class="modal-dialog">
-    
-      <!-- Modal content-->
+   <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-content">
-          <div class="modal-header" style="padding:35px 50px;">
-            <h4>thanks for taking a moment.</h4>
-          </div>
-            <p align="center">Please login to see the demo.</p>
-                <div class="modal-body" style="padding:30px 40px;">
-                  <form action="/login" method="post">
-                    <div class="form-group">
-                      <label for="username"><span class="glyphicon glyphicon-user"></span> Email</label>
-                      <input type="text" class="form-control" id="username" value="abc" name='email'>
-                    </div>
-                    <div class="form-group">
-                      <label for="password"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-                      <input type="text" class="form-control" id="password" value="123" name='password'>
-                    </div>
-                      <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-off"></span>Login</button>
-                      <button data-dismiss = "modal" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>Cancel</button>
-                  </form>
+            <div class="modal-header" style="padding:35px 50px;">
+                <h4>Thanks for taking a moment.</h4>
+            </div>
+                <p align="center">Please login to see the demo.</p>
+        <div class="modal-body" style="padding:30px 40px;">
+            <form action="/login" method="post">
+                <div class="form-group">
+                    <label for="username">
+                        <span class="glyphicon glyphicon-user"></span> Email
+                    </label>
+                        <input  type="text" 
+                                class="form-control" 
+                                id="username" 
+                                value="abc" 
+                                name='email'>
                 </div>
-          </div>
-      </div>
+                <div class="form-group">
+                    <label for="password">
+                        <span class="glyphicon glyphicon-eye-open"></span> Password
+                    </label>
+                        <input  type="text" 
+                                class="form-control" 
+                                id="password" 
+                                value="123" 
+                                name='password'>
+                </div>
+                <button type="submit"
+                        class="btn btn-success">
+                        <span class="glyphicon glyphicon-off"></span>Login
+                </button>
+                <button data-dismiss= "modal" 
+                        class="btn btn-danger">
+                        <span class="glyphicon glyphicon-remove"></span>Cancel
+                </button>
+            </form>
+        </div>
+        </div>
+    </div>
 
-    </div> 
-  </div>
- 
 
-
-
-
-   <ul class="side-nav" id="mobile-demo">
+    <ul class="side-nav" id="mobile-demo">
           <li><a href="#">Demo-Account</a></li>
           <li><a href="#user-signup">Sign-Up</a></li>
     </ul>
 
-
-  <!--Hero Section -->
- 
-        <div class="parallax-container valign-wrapper">
-          <div class="container">
-            <div class="row">
-              <div class="col l8 s12 white-text">
-                <h4 class="text valign">Keep track of your moments</h4>
-              </div>
-            </div>
-              <!-- <div class="parallax"><img src="assets/img/stars .jpg"></div> -->
+    <!--Hero Section -->
+    <div class="parallax-container valign-wrapper">
+      <div class="container">
+        <div class="row">
+          <div class="col l8 s12 white-text">
+            <h4 class="text valign">Keep track of your moments</h4>
           </div>
         </div>
+      </div>
+    </div>
 
-       
-
-        <div style="color: #777;background-color:white;text-align:center;padding:95px 80px;text-align: justify;">
-          <h3 style="text-align:center;">be present.</h3>
-          <p style="font-size: 14px"> Nascetur per nec posuere turpis, lectus nec libero turpis nunc at, sed posuere mollis ullamcorper libero ante lectus, blandit pellentesque a, magna turpis est sapien duis blandit dignissim. Viverra interdum mi magna mi, morbi sociis. Condimentum dui ipsum consequat morbi, curabitur aliquam pede, nullam vitae eu placerat eget et vehicula. Varius quisque non molestie dolor, nunc nisl dapibus vestibulum at, sodales tincidunt mauris ullamcorper, dapibus pulvinar, in in neque risus odio. Accumsan fringilla vulputate at quibusdam sociis eleifend, aenean maecenas vulputate, non id vehicula lorem mattis, ratione interdum sociis ornare. Suscipit proin magna cras vel, non sit platea sit, maecenas ante augue etiam maecenas, porta porttitor placerat leo.</p>
-        </div>
+    <!-- Separator Content -->
+    <div style="color: #777;background-color:white;text-align:center;padding:95px 80px;
+    text-align: justify;">
+      <h3 style="text-align:center;">be present.</h3>
+      <p style="font-size: 14px">Make time to jot down your thoughts and look back on them.</p>
+    </div>
 
         
-        
-         <div class="row-container"></div>
+<!-- Second Parallax -->
+<div class="row-container"></div>
 
-        <!-- <div class="parallax-container">
-           <div class="parallax"><img src="assets/img/gradient.png"></div>
-        </div> -->
 
-  <!-- Signup -->
-
-        <div id="user-signup">
-          <div class="col left">
-            <div class="content">
-              <div class="sign-up-container">
-                <span class="title">Let's Get Started</span>
-                  <ul class="social">
+<!-- Signup -->
+<div id="user-signup">
+    <div class="col left">
+        <div class="content">
+        <div class="sign-up-container">
+            <span class="title">Let's Get Started</span>
+                <ul class="social">
                     <li>
-                      <a href="/auth/google" class="google">
-                        <span class="icon"><i class="fa fa-google"></i></span>
-                        <span class="text">Sign up using Gmail</span>
-                      </a>
+                        <a href="/auth/google" class="google">
+                            <span class="icon"><i class="fa fa-google"></i></span>
+                            <span class="text">Sign up using Gmail</span>
+                        </a>
                     </li>
                     <li>
-                      <a href="/auth/facebook" class="facebook">
-                        <span class="icon"><i class="fa fa-facebook"></i></span>
-                        <span class="text">Sign up using Facebook</span>
-                      </a>
+                        <a href="/auth/facebook" class="facebook">
+                            <span class="icon"><i class="fa fa-facebook"></i></span>
+                            <span class="text">Sign up using Facebook</span>
+                        </a>
                     </li>
                     <li>
-                      <a href="/auth/twitter" class="twitter">
-                        <span class="icon"><i class="fa fa-twitter"></i></span>
-                        <span class="text">Sign up using Twitter</span>
-                      </a>
+                        <a href="/auth/twitter" class="twitter">
+                            <span class="icon"><i class="fa fa-twitter"></i></span>
+                            <span class="text">Sign up using Twitter</span>
+                        </a>
                     </li>
-                  </ul>
-              </div>
-            </div>
+                </ul>
         </div>
+        </div>
+    </div>
+</div>
 
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

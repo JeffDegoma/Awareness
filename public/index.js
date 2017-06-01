@@ -1,38 +1,34 @@
 $( document ).ready(function(){
-
     //side nav
 	$(".button-collapse").sideNav();
     //parallax
     $('.parallax').parallax();
-
-
     //accordian
     $('.collapsible').collapsible();
 
-
     //mobile-modal
-    $("#mobile-demo").click(function(){
+    $("#mobile-demo").click(() => {
         $("#myModal").modal();
     });
-
 
     //modal
-    $("#myBtn").click(function(){
-        $("#myModal").modal();
-    });
+    $("#myBtn").click(() => {
+        $("#myModal").modal()
+    })
+
 
     // Smooth Scroll to Signup
-    $("a").on('click', function(event) {
+    $(".signup").on('click', ((event) => {
         if (this.hash !== "") {
             event.preventDefault();
             const hash = this.hash;
-        $('html, body').animate({
-            scrollTop: $(hash).offset().top-55
-                }, 800, 'swing', function(){
-            window.location.hash = hash;
-            });
+                $('html, body').animate(
+                    {scrollTop: $(hash).offset().top-55}, 800, 'swing',
+                () => {
+                    window.location.hash = hash;
+                });
         }
-    });
+    }));
 
 
 
@@ -40,50 +36,43 @@ $( document ).ready(function(){
     $('#new-moment').on('submit', (e)=>{
         e.preventDefault(e);
         let item = $('form .materialize-textarea').val();
-   
+        let title = $('input[name=title]').val()
 
         $.ajax({
             type: 'POST',
             url: '/newMoments',
-            data: {item: item},
-            success: function(data){
+            data: {item: item, title:title},
+            success: ((data) => {
                 window.location.replace('/moments');
-            },
-
+            }),
             fail: ((err)=>{
-                console.error(err);
+                console.error("You must be logged in!", err);
             })
         });
-        
     });
 
 
     //Delete moment======================================
     $('.collapsible').on('click','.delete', function(e) {
         e.preventDefault(e);
-
         let id = $(this).data('moment-id');
-
 
         $.ajax({
             type: 'DELETE',
             url: '/moments/' + id,
-            success: function(data){
+            success: ((data) => {
                 repaintTheDOM();
-            },
-
+            }),
             fail: ((err)=>{
                 throw err;
             })
         });
-
     });
 
 
     //Edit moment=====================================
     $('.collapsible').on('click','.edit', function(e) {
         e.preventDefault(e);
-
         const id = $(this).data('moment-id');     
         const moment = $(this).siblings('input').val();
         
@@ -94,38 +83,32 @@ $( document ).ready(function(){
             type: 'PUT',
             url: '/moments/' + id,
             data: {moment},
-            success: function(data){
-
+            success: ((data) => {
                 console.log(data);
                 repaintTheDOM();
-            },
-
+            }),
             fail: ((err)=>{
                 throw err;
             })
         });
-
     });
 
 
-    //Delete moment======================================
     const activeArray = [];
     
-    $('.collapsible').on('click', 'li', function(e){
+    $('.collapsible').on('click', 'li', ((e) => {
         e.preventDefault(e);
-        
         const id = $(this).find('.edit').data('moment-id') ;
         const active = $(this).hasClass('active');
 
         if(active && !activeArray.includes(id)){
             activeArray.push(id);
         }
-
         else if (!active) {
             const index = activeArray.indexOf(id);
             activeArray.splice(index, 1);
         }
-    });
+    }));
 
     
     //Repaint the DOM======================================
@@ -139,16 +122,13 @@ $( document ).ready(function(){
               </div>
             </li>`;
 
-    function repaintTheDOM() {
+    const repaintTheDOM = () => {
         $.ajax({
             type: 'GET',
             url: '/moments/all',
-            success: function(data){
-                console.log(data);
-            
+            success: ((data) => {
                 $('.collapsible').html('');
-
-                const appendTo = data.map(function(moment){
+                const appendTo = data.map((moment) => {
                     const str = $(templateStr);
                     str.find('.momentText').val(moment.moment);
                     str.find('.delete').data('moment-id', moment._id);
@@ -159,18 +139,13 @@ $( document ).ready(function(){
                         str.find('.collapsible-header').addClass('active');
                         str.find('.collapsible-body').show();
                     }
-
                     return str;
                 });
 
                 $('.collapsible').html(appendTo);
-    
-            }
+            })
         });
-
     }
-
-  
 
 });
 
