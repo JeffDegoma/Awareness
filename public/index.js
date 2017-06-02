@@ -24,8 +24,6 @@ $( document ).ready(() => {
         return false;
     });
 
-
-
     //Add a new moment ==================
     $('#new-moment').on('submit', (e)=>{
         e.preventDefault(e);
@@ -45,9 +43,8 @@ $( document ).ready(() => {
         });
     });
 
-
     //Delete moment======================================
-    $('.collapsible').on('click','.delete', function(e) {
+    $('.collapsible').on('click','.delete', ((e) => {
         e.preventDefault(e);
         let id = $(this).data('moment-id');
 
@@ -63,9 +60,8 @@ $( document ).ready(() => {
         });
     });
 
-
     //Edit moment=====================================
-    $('.collapsible').on('click','.edit', function(e) {
+    $('.collapsible').on('click','.edit', ((e) => {
         e.preventDefault(e);
         const id = $(this).data('moment-id');     
         const moment = $(this).siblings('input').val();
@@ -87,9 +83,7 @@ $( document ).ready(() => {
         });
     });
 
-
     const activeArray = [];
-    
     $('.collapsible').on('click', 'li', ((e) => {
         e.preventDefault(e);
         const id = $(this).find('.edit').data('moment-id') ;
@@ -104,7 +98,6 @@ $( document ).ready(() => {
         }
     }));
 
-    
     //Repaint the DOM======================================
     const templateStr = 
             `<li>
