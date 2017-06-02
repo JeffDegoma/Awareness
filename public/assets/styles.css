@@ -6,6 +6,8 @@ body{
     background-size: cover;
 }
 
+@import url('http://fonts.googleapis.com/css?family=Open+Sans|Montserrat|Source Sans Pro:300');
+
 .demo, .signup{
   font-size: 13px;
 }
@@ -18,26 +20,14 @@ body{
       height: 760px;
  }
 
-
  *{
   font-family: 'Roboto Slab', serif;
  }
-
-
 
 .modal{
    max-height: 60%;
    border-radius: 10px;
 }
-
-
-/*  .modal-header, h4, .close {
-      background-color: #5cb85c;
-      color:white !important;
-      text-align: center;
-      font-size: 20px;
-  }
-*/
 
 .text{
   font-weight: 300;
@@ -45,8 +35,6 @@ body{
   border-radius: 10px;
   padding: 40px;
 }
-
-@import url('http://fonts.googleapis.com/css?family=Open+Sans|Montserrat|Source Sans Pro:300');
 
 #user-signup {
   position: absolute;
@@ -170,13 +158,11 @@ p {
   padding: 0 10px;
 }
 
-
 .btn-block, 
 .btn-success{
    display: inline-block;
    vertical-align: top;
 }
-
 
 /*second parallax*/
 .row-container{

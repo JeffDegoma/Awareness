@@ -1,4 +1,4 @@
-$( document ).ready(function(){
+$( document ).ready(() => {
     //side nav
 	$(".button-collapse").sideNav();
     //parallax
@@ -16,19 +16,13 @@ $( document ).ready(function(){
         $("#myModal").modal()
     })
 
-
     // Smooth Scroll to Signup
-    $(".signup").on('click', ((event) => {
-        if (this.hash !== "") {
-            event.preventDefault();
-            const hash = this.hash;
-                $('html, body').animate(
-                    {scrollTop: $(hash).offset().top-55}, 800, 'swing',
-                () => {
-                    window.location.hash = hash;
-                });
-        }
-    }));
+    $('a').click(function(){
+        $('html, body').animate({
+            scrollTop: $( $(this).attr('href') ).offset().top
+        }, 900);
+        return false;
+    });
 
 
 
