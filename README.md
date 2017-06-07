@@ -1,8 +1,8 @@
 # Awareness
 
 # Install
-> git clone https://github.com/JeffDegoma/Awareness.git
-> npm i
+  > git clone https://github.com/JeffDegoma/Awareness.git
+  > npm i
 # Launching
 > node server.js
 # About
