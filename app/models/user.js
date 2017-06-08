@@ -2,9 +2,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt-nodejs');
 
 
-
 const userSchema = mongoose.Schema({
-
 
 	local: {
         email        : String,
@@ -31,8 +29,6 @@ const userSchema = mongoose.Schema({
 		displayName: String,
 		username: String
 	} 
-
-
 
 });
 

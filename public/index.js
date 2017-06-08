@@ -16,16 +16,16 @@ $( document ).ready(() => {
         $("#myModal").modal()
     })
 
-    // Smooth Scroll to Signup
-    $('a').click(function(){
+    // Smooth Scroll to Signup==============
+    $('.smooth-scroll').click(function(){
         $('html, body').animate({
             scrollTop: $( $(this).attr('href') ).offset().top
         }, 900);
         return false;
     });
 
-    //Add a new moment ==================
-    $('#new-moment').on('submit', (e)=>{
+    //Add a new moment ===================
+    $('#new-moment').on('submit', (e) => {
         e.preventDefault(e);
         let item = $('form .materialize-textarea').val();
         let title = $('input[name=title]').val()
@@ -43,43 +43,42 @@ $( document ).ready(() => {
         });
     });
 
-    //Delete moment======================================
-    $('.collapsible').on('click','.delete', ((e) => {
+    //Delete moment=====================================
+    $('.collapsible').on('click','.delete', function(e){
         e.preventDefault(e);
         let id = $(this).data('moment-id');
 
         $.ajax({
             type: 'DELETE',
             url: '/moments/' + id,
-            success: ((data) => {
+            success: function(data){
                 repaintTheDOM();
-            }),
-            fail: ((err)=>{
+            },
+            fail: function(err){
                 throw err;
-            })
+            }
         });
     });
 
     //Edit moment=====================================
-    $('.collapsible').on('click','.edit', ((e) => {
+    $('.collapsible').on('click','.edit', function(e){
         e.preventDefault(e);
         const id = $(this).data('moment-id');     
         const moment = $(this).siblings('input').val();
         
-        console.log("ID", id);
         console.log("MOMENT", moment);
 
         $.ajax({
             type: 'PUT',
             url: '/moments/' + id,
             data: {moment},
-            success: ((data) => {
+            success: function(data){
                 console.log(data);
                 repaintTheDOM();
-            }),
-            fail: ((err)=>{
+            },
+            fail: function(err){
                 throw err;
-            })
+            }
         });
     });
 
@@ -128,11 +127,9 @@ $( document ).ready(() => {
                     }
                     return str;
                 });
-
                 $('.collapsible').html(appendTo);
             })
         });
     }
-
 });
 
