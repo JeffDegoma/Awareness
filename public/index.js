@@ -17,7 +17,7 @@ $( document ).ready(() => {
     })
 
     // Smooth Scroll to Signup==============
-    $('.smooth-scroll').click(function(){
+    $('.smooth-scroll, .signup').click(function(){
         $('html, body').animate({
             scrollTop: $( $(this).attr('href') ).offset().top
         }, 900);
