@@ -4,7 +4,7 @@
     > git clone https://github.com/JeffDegoma/Awareness.git
     > npm i
 # Launching
-> node server.js
+> npm start
 # About
   Awareness is a responsive app that aims to wade through the mental bandwidth that we have in our daily lives. This app hopes to provide a space for those moments of clarity and appreciate the present.
 
